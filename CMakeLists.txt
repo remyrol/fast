@@ -3,12 +3,13 @@
 
 # Based on the ARM_ARCHITECTURE environment variable
 # Set IS_ARM to build on the Odroid board
-IF(DEFINED ENV{ARM_ARCHITECTURE})
-  MESSAGE("ARM_ARCHITECTURE environment variable set to " $ENV{ARM_ARCHITECTURE})
-  SET(IS_ARM TRUE)
-ELSE()
-  SET(IS_ARM FALSE)
-ENDIF()
+#IF(DEFINED ENV{ARM_ARCHITECTURE})
+#  MESSAGE("ARM_ARCHITECTURE environment variable set to " $ENV{ARM_ARCHITECTURE})
+#  SET(IS_ARM TRUE)
+#ELSE()
+#  SET(IS_ARM FALSE)
+#ENDIF()
+SET(IS_ARM TRUE)
 
 SET(BUILD_TEST TRUE)
 
@@ -23,7 +24,7 @@ SET(CMAKE_BUILD_TYPE Release) # Options:  Debug, RelWithDebInfo, Release
 SET(CMAKE_CXX_FLAGS "-Wall -Werror -Wno-unused-variable -Wno-unused-but-set-variable -Wno-unknown-pragmas")
 SET(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS} -O0 -g")
 IF(IS_ARM)
-  SET(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS} -O3 -mfpu=neon -march=armv7-a")
+  SET(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS} -O3 -march=armv8-a")
 ELSE()
   SET(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS} -O3 -mmmx -msse -msse -msse2 -msse3 -mssse3 -fomit-frame-pointer")
 ENDIF()
